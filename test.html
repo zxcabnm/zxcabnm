@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be My Valentine?</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffcccb;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      position: relative;
+      margin: 0;
+      transition: background-color 0.5s ease; /* Smooth transition for background */
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: red;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .button {
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      color: white;
+      background-color: red;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: darkred;
+    }
+
+    #no-btn {
+      position: relative;
+    }
+
+    #message {
+      font-size: 2rem;
+      color: darkred;
+      margin-top: 20px;
+    }
+
+    #additional-message {
+      font-size: 1.5rem;
+      color: darkred;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    #empty-btn {
+      display: none;
+    }
+
+    #empty-btn:hover {
+      background-color: darkred;
+    }
+
+    /* Media Query for Phone */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .button {
+        padding: 12px 25px;
+        font-size: 1.2rem;
+      }
+
+      #additional-message {
+        font-size: 1.2rem;
+        bottom: 10px;
+        right: 10px;
+      }
+
+      #message {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Media Query for Small Phone */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .button {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+
+      #additional-message {
+        font-size: 1rem;
+        bottom: 5px;
+        right: 5px;
+      }
+
+      #message {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+  <script>
+    let noButtonClickCount = 0;
+
+    function moveNoButton() {
+      const button = document.getElementById("no-btn");
+      button.style.position = "absolute";
+      button.style.top = Math.random() * 80 + "vh";
+      button.style.left = Math.random() * 80 + "vw";
+    }
+
+    function updateNoButtonText() {
+      noButtonClickCount++;
+
+      const button = document.getElementById("no-btn");
+      if (noButtonClickCount === 1) {
+        button.textContent = "Nreyu";
+      } else if (noButtonClickCount === 2) {
+        button.textContent = "Bi gomdishu";
+      } else if (noButtonClickCount === 3) {
+        button.textContent = "Itgeltei bnu?";
+      } else if (noButtonClickCount === 4) {
+        button.textContent = "R u sure?";
+      } else {
+        noButtonClickCount = 4; // Loop back to "R u sure?"
+        button.textContent = "R u sure?";
+      }
+    }
+
+    function yesButtonPressed() {
+      // Clear the existing content
+      document.body.innerHTML = '';
+
+      // Keep the background
+      document.body.style.backgroundColor = '#ffcccb'; // Reapply the background color
+
+      // Show the next steps or message
+      const nextStepMessage = document.createElement('h1');
+      nextStepMessage.textContent = "Zuvshuurhiig chine medsiimaa";
+      document.body.appendChild(nextStepMessage);
+
+      const additionalMessage = document.createElement('p');
+      additionalMessage.textContent = "Hairtai juu Tergel ee";
+      additionalMessage.style.fontSize = '1.5rem';
+      additionalMessage.style.color = 'darkred';
+      additionalMessage.style.position = 'absolute';
+      additionalMessage.style.bottom = '10px';
+      additionalMessage.style.right = '10px';
+      document.body.appendChild(additionalMessage);
+    }
+  </script>
+</head>
+<body>
+  <div>
+    <h1>Will You Be My Valentine? ❤️</h1>
+    <div class="buttons">
+      <button class="button" onclick="yesButtonPressed()">Yes</button>
+      <button class="button" id="no-btn" onclick="moveNoButton(); updateNoButtonText()">No</button>
+    </div>
+    <p id="message"></p>
+    <p id="additional-message"></p>
+  </div>
+</body>
+</html>
